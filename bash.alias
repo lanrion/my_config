@@ -1,0 +1,96 @@
+# ruby
+alias bi="bundle install"
+alias ruby-httpd='open http://localhost:5000; ruby -run -e httpd . -p 5000'
+
+# git
+alias gs="git status"
+alias gb="git branch"
+alias gbd="git branch -D"
+alias gcheck="git checkout"
+alias gpull="git pull"
+alias submodule-update="git submodule update"
+alias submodule-foreach-update="git submodule foreach git pull origin master"
+
+alias gtag-remote="git fetch --prune --tags"
+
+alias glog="git log"
+alias glog-graph="git log --graph"
+alias glog-oneline="git log --oneline"
+
+
+alias 4rs="be rails s -p 4000"
+alias 3rs="be rails s -p 3000"
+alias be="bundle exec"
+alias ber="be rspec"
+alias rgm="rails generate migration"
+
+# deploy
+alias deploy-staging="cap staging deploy"
+alias deploy-staging-migrations="cap staging deploy:migrations"
+alias deploy-staging-rake="cap staging remote:rake"
+alias deploy-staging-console="cap staging remote:console"
+alias deploy-staging-database-update="cap staging update:database"
+alias deploy-staging-log="cap staging remote:run 'tail -n 10 log/staging.log'"
+
+alias deploy-production="cap production deploy"
+alias deploy-production-migrations="cap production deploy:migrations"
+alias deploy-production-rake="cap production remote:rake"
+alias deploy-production-console="cap remote:console"
+alias deploy-production-database-update="cap production update:database"
+
+# path
+alias to_project="cd ~/Projects"
+alias to_open="cd ~/Projects/opensources/"
+alias to_open_project="cd ~/Projects/opensources/projects"
+alias to_mygems="cd ~/Projects/mygems"
+alias to_codes="cd /Users/lanrion/Projects/mygems/ruby-codes"
+
+alias to_jobs="cd ~/Projects/jobs"
+
+alias to_ada="cd ~/Projects/jobs/ada"
+alias to_q12="cd ~/Projects/jobs/ada/q12"
+
+alias to_bs="cd ~/Projects/jobs/bs"
+alias to_rails="cd ~/Projects/opensources/rails && st ."
+alias to_rack="cd /Users/lanrion/Projects/opensources/rack && st ."
+
+# tool
+alias st3="sublime"
+alias st="sublime3"
+alias g-s="grunt server --force"
+alias bo="bundle open"
+alias boi="bower install"
+alias zs="zeus start"
+alias zc="zeus c"
+alias rc="be rails c"
+
+alias st-alias="st ~/.bash_alias"
+alias reload="source ~/.bash_profile"
+
+alias ..="cd .."
+alias o="open ."
+
+alias rr="be rake routes"
+alias re="be rake"
+
+alias rake-migrate-db="re db:migrate"
+alias rake-create-db="re db:create"
+alias rake-drop-db="re db:drop"
+alias rake-seed-db="re db:seed"
+
+alias start-devdoc="to_open && cd devdocs && rackup -s thin -p 8001 -D"
+
+alias cap-staging-remote-tail_log='cap staging remote:tail_log'
+
+function String.parameterize (){
+  ruby -e "require 'active_support/core_ext/string'; puts '$1'.parameterize;"
+}
+
+function git-new-branch {
+  git checkout master
+  String.parameterize "$1" > __tmp__
+  cat __tmp__ |xargs -L1 git checkout -b
+  rm __tmp__
+}
+
+alias ll="ls -l"
